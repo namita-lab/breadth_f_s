@@ -28,3 +28,5 @@ def bfs_maxdepth(graph, start, goal, maxdepth):
             #depths[neighbour] = depths[vertex] + 1
     return depths
 
+
+bfs = bfs_maxdepth(d, g, h, 12)
