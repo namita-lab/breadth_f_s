@@ -1,0 +1,13 @@
+def bfs_maxdepth(graph, start, maxdepth=10):
+    queue = deque([start])
+    depths = {start: 0}
+    while queue:
+        vertex = queue.popleft()
+        if depths[vertex] == maxdepth:
+            break
+        for neighbour in graph[vertex]:
+            if neighbour in depths:
+                continue
+            queue.append(neighbour)
+            depths[neighbour] = depths[vertex] + 1
+    return len(depths)
