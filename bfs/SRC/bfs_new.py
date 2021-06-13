@@ -1,13 +1,30 @@
-def bfs_maxdepth(graph, start, maxdepth=10):
-    queue = deque([ (start, 0) ])
+def bfs_maxdepth(graph, start, goal, maxdepth):
+    explored = set()
+    queue = deque([(start, 0)])
     depths = {start: 0}
+
+    if start == goal:
+        return "That was easy! Start = goal"
+
     while queue:
-        vertex, depth = queue.popleft()
-        if depth == maxdepth:
+        vertex, depths = queue.popleft()
+        print(vertex)
+        print(depths)
+#        depths=str(depths)
+        if depths == maxdepth:
             break
-        for neighbour in graph[vertex]:
-            if neighbour in depths:
-                continue
-            queue.append( (neighbour, depth+1) )
+        if vertex not in explored:
+            neighbours = graph[vertex]
+
+            for neighbour in neighbours:
+                if neighbour in str(depths):
+                    continue
+                queue.append((neighbour, depths+1))
+
+            explored.add(vertex)
+                # if neighbour == goal:
+                #     return new_path
+
             #depths[neighbour] = depths[vertex] + 1
-    return len(depths)
+    return depths
+
